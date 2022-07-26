@@ -10,8 +10,8 @@
 -- Spring Cloud OpenFeign Document
 
 
-[Spring Cloud OpenFeign](https://docs.spring.io/spring-cloud-openfeign/docs/current/reference/html/#spring-cloud-feign)
-[掌握SpringCloud OpenFeign的核心原理](https://zhuanlan.zhihu.com/p/346273428)
-[Feign的面向SPI和面向API的用法区别](https://blog.51cto.com/Tlog4J/5148220)
-[Feign最佳实践](https://juejin.cn/post/6948224170496884773)
-[Feign在实际项目中的应用实践](https://www.cnblogs.com/mufeng3421/p/13091899.html)
+* https://docs.spring.io/spring-cloud-openfeign/docs/current/reference/html/#spring-cloud-feign[Spring Cloud OpenFeign]
+* https://zhuanlan.zhihu.com/p/346273428[掌握SpringCloud OpenFeign的核心原理]
+* https://blog.51cto.com/Tlog4J/5148220[Feign的面向SPI和面向API的用法区别]
+* https://juejin.cn/post/6948224170496884773)[Feign最佳实践]
+* https://www.cnblogs.com/mufeng3421/p/13091899.html[Feign在实际项目中的应用实践]
