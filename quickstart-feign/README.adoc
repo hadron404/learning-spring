@@ -1,0 +1,17 @@
+* 什么是 Feign
+* Feign 和 Openfeign 的区别
+* 为什么使用feign
+* OpenFeign 的启动原理
+* OpenFeign 的工作原理
+* OpenFeign 如何负载均衡
+
+
+> Feign is a declarative web service client. It makes writing web service clients easier. To use Feign create an interface and annotate it. It has pluggable annotation support including Feign annotations and JAX-RS annotations. Feign also supports pluggable encoders and decoders. Spring Cloud adds support for Spring MVC annotations and for using the same HttpMessageConverters used by default in Spring Web. Spring Cloud integrates Eureka, Spring Cloud CircuitBreaker, as well as Spring Cloud LoadBalancer to provide a load-balanced http client when using Feign.
+-- Spring Cloud OpenFeign Document
+
+
+[Spring Cloud OpenFeign](https://docs.spring.io/spring-cloud-openfeign/docs/current/reference/html/#spring-cloud-feign)
+[掌握SpringCloud OpenFeign的核心原理](https://zhuanlan.zhihu.com/p/346273428)
+[Feign的面向SPI和面向API的用法区别](https://blog.51cto.com/Tlog4J/5148220)
+[Feign最佳实践](https://juejin.cn/post/6948224170496884773)
+[Feign在实际项目中的应用实践](https://www.cnblogs.com/mufeng3421/p/13091899.html)
