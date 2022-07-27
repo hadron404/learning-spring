@@ -1,0 +1,20 @@
+feign:
+  httpclient:
+    enabled: on
+    #设置连接存活时间为900秒，超过该时间后空闲连接会被回收，注意的是如果你通过Java Config覆盖默认ApacheHttpClient，一定要创建定时器来检测无用连接
+    time-to-live: 900
+    #设置全局最大连接数为300个连接，可根据具体有多少FeignClient来决定，比如一个HOST最多50个连接，一个有8个HOST，每个HOST调用频率有高有低，可折中取值300
+    max-connections: 300
+    #设置单个HOST最大连接数为50个，可根据高峰期调用频率来调整
+    max-connections-per-route: 50
+  client:
+    config:
+      default:
+        #设置通用client连接超时为100毫秒，连接时间不宜过长，防止依赖服务负载过高情况下活跃连接都在长时间尝试建立连接，建议设置比较短以便快速失败
+        connect-timeout: 100
+        #设置通用client响应超时为1秒，单个接口响应时间不宜过长，建议为1秒，超过1秒的一般都需要优化接口，如果无法优化建议走独立配置
+        read-timeout: 1000
+
+
+
+
