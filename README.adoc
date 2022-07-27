@@ -1,6 +1,6 @@
 Table Of Content
 
-* validate // todo
+* validate
 * log
-* feign // todo
+* feign
 * webflux + websocket // todo

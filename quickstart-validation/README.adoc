@@ -1,0 +1,34 @@
+= Validation
+
+== 基本用法
+单字段的参数校验,主要是以下属性的校验
+
+* 是否为空
+* 长度
+* 范围
+* 大小
+* 格式
+
+详细参考Hibernate提供的基本校验注解，特殊需求可通过进阶用法来实现。
+
+== 进阶用法
+
+=== 分组校验
+
+=== 嵌套校验
+
+=== 自定义校验
+
+=== 编程式校验
+
+=== 多字段联合校验
+
+=== 快速失败
+
+
+== Testing in Unit Test
+
+== 参考
+* https://www.jianshu.com/p/ce35092e89d2[Spring Boot 参数校验]
+* https://www.cnblogs.com/chentianming/p/13424303.html[Spring Validation 最佳实践及其实现原理]
+
