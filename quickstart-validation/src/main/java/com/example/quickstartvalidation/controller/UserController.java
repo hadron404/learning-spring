@@ -1,10 +1,7 @@
 package com.example.quickstartvalidation.controller;
 
 import com.example.quickstartvalidation.model.UserDTO;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -18,7 +15,7 @@ public class UserController {
 	}
 
 
-	@PostMapping()
+	@PutMapping()
 	public void updateBy(@RequestBody @Valid UserDTO user) {
 
 	}

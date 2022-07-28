@@ -28,7 +28,13 @@
 
 == Testing in Unit Test
 
+
+== 案例
+=== 业务校验
+
+
 == 参考
 * https://www.jianshu.com/p/ce35092e89d2[Spring Boot 参数校验]
 * https://www.cnblogs.com/chentianming/p/13424303.html[Spring Validation 最佳实践及其实现原理]
+* https://blog.csdn.net/qq_34491508/article/details/119235495[Springboot如何优雅的进行业务校验]
 

@@ -11,7 +11,6 @@ For further reference, please consider the following sections:
 * [Validation](https://docs.spring.io/spring-boot/docs/2.7.2/reference/htmlsingle/#io.validation)
 * [Hibernate Validator Reference Guide](https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/#preface)
 
-
 ### Guides
 
 The following guides illustrate how to use some features concretely:
@@ -28,4 +27,6 @@ These additional references should also help you:
 * [Gradle Build Scans – insights for your project's build](https://scans.gradle.com#gradle)
 
 ### Articles
+
 * [Spring Validation最佳实践及其实现原理](https://www.cnblogs.com/chentianming/p/13424303.html)
+* [SpringBoot 枚举类参数校验](https://blog.csdn.net/weixin_40990818/article/details/109434581)
