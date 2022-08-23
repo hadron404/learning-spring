@@ -24,6 +24,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'com.h2database:h2:2.1.214'
 	implementation 'org.springframework.boot:spring-boot-starter-web:2.7.3'
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc:2.7.3'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
