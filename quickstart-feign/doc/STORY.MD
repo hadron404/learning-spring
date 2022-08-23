@@ -45,3 +45,7 @@ provider:
 #NFLoadBalancerRuleClassName: com.netflix.loadbalancer.WeightedResponseTimeRule #配置规则 响应时间权重
 #NFLoadBalancerRuleClassName: com.netflix.loadbalancer.BestAvailableRule #配置规则 最空闲连接策略
 ```
+
+业务方面
+1. 对接外部系统时，需要对response进行统一处理
+2. 对接外部系统时，需要自定义 Encoder 和 Decoder
