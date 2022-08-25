@@ -16,11 +16,14 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Slf4j
 public class UserServiceImpl implements UserService {
 
-	@Autowired
-	private UserRepository userRepository;
+	private final UserRepository userRepository;
 
-	@Autowired
-	private TransactionHelper transactionHelper;
+	private final TransactionHelper transactionHelper;
+
+	public UserServiceImpl(UserRepository userRepository, TransactionHelper transactionHelper) {
+		this.userRepository = userRepository;
+		this.transactionHelper = transactionHelper;
+	}
 
 	@Override
 	public void transactionWithAsyncTasks(List<Runnable> tasks) {

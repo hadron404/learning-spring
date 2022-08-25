@@ -1,10 +1,9 @@
 package com.example.quickstart;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.lang.NonNull;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
@@ -15,15 +14,17 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.LockSupport;
 
-@Service
 @Slf4j
+@Component
 public class TransactionHelper {
-	@Autowired
-	// todo 总是注入不了
-	private DataSourceTransactionManager transactionManager;
+	private final PlatformTransactionManager transactionManager;
 
 	private static final DefaultTransactionDefinition DEFAULT_TRANSACTION_DEFINITION =
 		new DefaultTransactionDefinition(TransactionDefinition.PROPAGATION_REQUIRES_NEW);
+
+	public TransactionHelper(PlatformTransactionManager transactionManager) {
+		this.transactionManager = transactionManager;
+	}
 
 	public CompletableFuture<Void> asyncExecuteWithManualCompleteTransaction(
 		@NonNull AtomicBoolean isException, @NonNull AtomicInteger totalThreadCount,
@@ -32,7 +33,6 @@ public class TransactionHelper {
 			this.executeWithManualCompleteTransaction(DEFAULT_TRANSACTION_DEFINITION,
 				isException, totalThreadCount, unFinishedThread, businessTask)
 		);
-		// return null;
 	}
 
 	public void executeWithManualCompleteTransaction(
