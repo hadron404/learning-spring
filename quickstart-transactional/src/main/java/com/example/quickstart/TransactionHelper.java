@@ -8,6 +8,8 @@ import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -63,10 +65,26 @@ public class TransactionHelper {
 				transactionManager.commit(transactionStatus);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
-			transactionManager.rollback(transactionStatus);
 			isException.set(Boolean.TRUE);
 			ThreadUtils.notifyAllThread(unFinishedThread, totalThreadCount, true);
+			transactionManager.rollback(transactionStatus);
+			e.printStackTrace();
 		}
+	}
+
+	public void asyncExecuteTasksWithTransaction(List<Runnable> tasks) {
+		// 所有开启事务的线程中, 是否存在异常
+		AtomicBoolean isExistException = new AtomicBoolean(Boolean.FALSE);
+		// 定义开启的线程数
+		AtomicInteger totalThreadCount = new AtomicInteger(0);
+		List<Thread> unFinishedThread = Collections.synchronizedList(new ArrayList<>());
+		// if any async task has exception, all task need rollback to complete transaction
+		tasks.stream()
+			.map(task -> asyncExecuteWithManualCompleteTransaction(
+					isExistException, totalThreadCount, unFinishedThread, task)
+			)
+			.map(CompletableFuture::join)
+			.forEach((i) -> {
+			});
 	}
 }

@@ -17,6 +17,9 @@ class UserServiceTest {
 	@Autowired
 	private UserRepository userRepository;
 
+	@Autowired
+	private TransactionHelper transactionHelper;
+
 	@Test
 	void findUser() {
 		List<User> users = userRepository.findAll();
@@ -30,23 +33,38 @@ class UserServiceTest {
 	}
 
 	@Test
-	void transactionWithAsyncTasks() {
+	void asyncExecuteTasksWithTransaction_Normal() {
 		long beforeInsertSize = userRepository.count();
 		List<Runnable> tasksWithException = List.of(
+			() -> userService.createAUser()
+		);
+		transactionHelper.asyncExecuteTasksWithTransaction(tasksWithException);
+		long afterInsertSize = userRepository.count();
+		Assertions.assertEquals(beforeInsertSize + 1, afterInsertSize);
+	}
+
+	@Test
+	void asyncExecuteTasksWithTransaction_Normal1() {
+		List<Runnable> tasksWithException = List.of(
+			() -> userService.deleteAllUser(),
+			() -> userService.createAUser()
+		);
+		transactionHelper.asyncExecuteTasksWithTransaction(tasksWithException);
+		long afterInsertSize = userRepository.count();
+		Assertions.assertEquals(1, afterInsertSize);
+	}
+
+	@Test
+	void asyncExecuteTasksWithTransaction_NormalWithAnyTaskException() {
+		long beforeInsertSize = userRepository.count();
+		List<Runnable> tasksWithException = List.of(
+			() -> userService.deleteAllUser(),
 			() -> {
-				//	execute something with exception
-				int i = 1 / 0;
-			},
-			() -> {
-				//	 insert a new user
-				User insertUser = new User();
-				insertUser.setName("赵四");
-				insertUser.setAge(19);
-				insertUser.setGender(1);
-				userRepository.save(insertUser);
+				userService.createAUser();
+				throw new RuntimeException("插入新用户异常");
 			}
 		);
-		userService.transactionWithAsyncTasks(tasksWithException);
+		transactionHelper.asyncExecuteTasksWithTransaction(tasksWithException);
 		long afterInsertSize = userRepository.count();
 		Assertions.assertEquals(beforeInsertSize, afterInsertSize);
 	}
