@@ -75,16 +75,14 @@ class UserServiceTest {
 		List<Runnable> tasksWithException = List.of(
 			() -> {
 				userService.createAUser();
-				throw new RuntimeException("插入新用户异常");
-			},
-			() -> {
-				userService.deleteAllUser();
 				try {
 					Thread.sleep(10_000);
 				} catch (InterruptedException e) {
 					throw new RuntimeException(e);
 				}
-			}
+				throw new RuntimeException("插入新用户异常");
+			},
+			() -> userService.deleteAllUser()
 		);
 		transactionHelper.asyncExecuteTasksWithTransaction(tasksWithException);
 		long afterInsertSize = userRepository.count();
