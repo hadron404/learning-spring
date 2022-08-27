@@ -58,7 +58,7 @@ public class TransactionHelper {
 			log.info("即将开启调用：{},{}", unFinishedThread.size(), totalThreadCount.get());
 			ThreadUtils.notifyAllThread(unFinishedThread, totalThreadCount, false);
 			log.info("即将悬停线程：{}", Thread.currentThread());
-			LockSupport.park();
+			LockSupport.parkNanos(1000);
 			if (isException.get()) {
 				transactionManager.rollback(transactionStatus);
 			} else {

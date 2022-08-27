@@ -68,4 +68,26 @@ class UserServiceTest {
 		long afterInsertSize = userRepository.count();
 		Assertions.assertEquals(beforeInsertSize, afterInsertSize);
 	}
+
+	@Test
+	void asyncExecuteTasksWithTransaction_NormalWithAnyTaskException2() {
+		long beforeInsertSize = userRepository.count();
+		List<Runnable> tasksWithException = List.of(
+			() -> {
+				userService.createAUser();
+				throw new RuntimeException("插入新用户异常");
+			},
+			() -> {
+				userService.deleteAllUser();
+				try {
+					Thread.sleep(10_000);
+				} catch (InterruptedException e) {
+					throw new RuntimeException(e);
+				}
+			}
+		);
+		transactionHelper.asyncExecuteTasksWithTransaction(tasksWithException);
+		long afterInsertSize = userRepository.count();
+		Assertions.assertEquals(beforeInsertSize, afterInsertSize);
+	}
 }
