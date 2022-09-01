@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    password: 'sample-redis'
+    url: jdbc:h2:mem:test;DB_CLOSE_DELAY=-1
+    username: sample-redis
+  jpa:
+    database: h2
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
+  sql:
+    init:
+      continue-on-error: false
+      data-locations: classpath:db/data.sql
+      encoding: UTF-8
+      mode: always
+      schema-locations: classpath:db/schema.sql
