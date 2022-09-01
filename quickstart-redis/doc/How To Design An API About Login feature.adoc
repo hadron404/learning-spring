@@ -1,0 +1,9 @@
+== Story
+十分钟内连续登录5次失败,需等待30分钟后才能再次登录
+
+== 场景分析
+1.
+
+
+== Reference
+1. Specification by Example: How Successful Teams Deliver the Right Software
