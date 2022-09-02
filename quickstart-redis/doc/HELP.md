@@ -30,3 +30,4 @@ These additional references should also help you:
 ### Blogs
 * [Redis 为什么要自定义序列化](https://www.jianshu.com/p/54e2470e9013)
 * [Redis 之客户端框架比较：Jedis，Redisson，Lettuce](https://www.cnblogs.com/liyan492/p/9858548.html)
+* [RedisTemplate 使用示例](https://zhuanlan.zhihu.com/p/139528556)
