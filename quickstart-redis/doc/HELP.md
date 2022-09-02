@@ -10,7 +10,7 @@ For further reference, please consider the following sections:
 * [Spring Web](https://docs.spring.io/spring-boot/docs/2.7.3/reference/htmlsingle/#web)
 * [Spring Data JPA](https://docs.spring.io/spring-boot/docs/2.7.3/reference/htmlsingle/#data.sql.jpa-and-spring-data)
 * [Spring Data Redis (Access+Driver)](https://docs.spring.io/spring-boot/docs/2.7.3/reference/htmlsingle/#data.nosql.redis)
-
+* [Redisson](https://redisson.org/)
 ### Guides
 
 The following guides illustrate how to use some features concretely:
@@ -27,3 +27,6 @@ These additional references should also help you:
 
 * [Gradle Build Scans – insights for your project's build](https://scans.gradle.com#gradle)
 
+### Blogs
+* [Redis 为什么要自定义序列化](https://www.jianshu.com/p/54e2470e9013)
+* [Redis 之客户端框架比较：Jedis，Redisson，Lettuce](https://www.cnblogs.com/liyan492/p/9858548.html)
