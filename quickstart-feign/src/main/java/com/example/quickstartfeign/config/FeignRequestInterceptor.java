@@ -1,0 +1,19 @@
+package com.xjjk.ec.oms.config;
+
+import feign.RequestInterceptor;
+import feign.RequestTemplate;
+import org.springframework.context.annotation.Configuration;
+
+// 需要本地调用时外部服务时放开
+// 外部服务有自定义header
+@Configuration
+public class FeignRequestInterceptor implements RequestInterceptor {
+
+    @Override
+    public void apply(RequestTemplate template) {
+        // template.header(HttpHeaders.AUTHORIZATION,
+        //         "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiN0IyMjQ5NjQyMjNBMzMzMTM4MzIyQzIyNDE2MzYzNkY3NTZFNzQyMjNBMjIzMTMzMzEzNTM1MjIyQzIyNEU2MTZENjUyMjNBMjJFNTkxQThFNUJDQkEyMjJDMjI0RjcyNjc0OTY0MjIzQTMxMzIyQzIyNEY3MjY3NTQ3OTcwNjU0OTY0MjIzQTMwMkMyMjQyNzU3MzY5NkU2NTczNzM1NDc5NzA2NTIyM0EyMjM2MjI3RCIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IlVzZXIiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL2V4cGlyYXRpb24iOiIxMC8xMy8yMDIyIDE4OjU1OjA0IiwibmJmIjoxNjY1NjIyNTA0LCJleHAiOjE2NjU3MDg5MDQsImlzcyI6ImdzdyIsImF1ZCI6ImdzdyJ9.vYwufLDf3V9cx5kwSbAPYMNj4uRM4NZBaZXnCrm-OMA");
+        template.header("CurrentUser", "7B224964223A363535312C224163636F756E74223A223132333036222C224E616D65223A22E68A96E99FB3E5B08FE7BD90E5909BE79B8AE7949FE88F8C222C224F72674964223A3338357D");
+    }
+
+}

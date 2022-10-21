@@ -9,5 +9,4 @@ public class QuickstartEsApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(QuickstartEsApplication.class, args);
 	}
-
 }
