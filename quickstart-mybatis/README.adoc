@@ -1,0 +1,15 @@
+
+
+= Todo List
+
+* How to integrate Mybatis in Springboot?
+* How to config multi-datasource in Mybatis with Springboot?
+* How to use Mybatis Annotation?
+
+
+== Reference Documentation
+
+* https://mybatis.org/mybatis-3[Official Mybatis Documentation]
+* https://github.com/mybatis/spring-boot-starter/wiki/Quick-Start[MyBatis Quick Start]
+
+

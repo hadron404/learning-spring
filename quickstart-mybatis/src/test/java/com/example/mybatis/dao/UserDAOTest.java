@@ -1,10 +1,12 @@
 package com.example.mybatis.dao;
 
+import com.example.mybatis.dao.primary.UserDAO;
 import com.example.mybatis.model.User;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+
 
 @SpringBootTest
 class UserDAOTest {

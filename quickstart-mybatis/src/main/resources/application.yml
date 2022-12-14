@@ -1,11 +1,16 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/trial
-    password: '123456'
-    username: root
     driver-class-name: com.mysql.cj.jdbc.Driver
+    primary:
+      jdbc-url: jdbc:mysql://localhost:3306/trial
+      password: '123456'
+      username: root
+    secondary:
+      jdbc-url: jdbc:mysql://localhost:3306/trial2
+      password: '123456'
+      username: root
 mybatis:
-  mapper-locations: mapper/*.xml
+#  mapper-locations: mapper/*.xml
   configuration:
     # 配置项：开启下划线到驼峰的自动转换，作用：将数据库字段根据驼峰规则自动注入到对象属性。
     map-underscore-to-camel-case: true

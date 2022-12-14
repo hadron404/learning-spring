@@ -1,5 +1,6 @@
-package com.example.mybatis.dao;
+package com.example.mybatis.dao.secondary;
 
+import com.example.mybatis.model.Book;
 import com.example.mybatis.model.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -7,10 +8,8 @@ import org.springframework.stereotype.Component;
 
 @Mapper
 @Component
-public interface UserDAO {
+public interface BookDAO {
 
-	@Select("select id,name,age,gender from t_user where id = #{id}")
-	User findById(Integer id);
-
-	User findByIdWithXML(Integer id);
+	@Select("select id,name,isbn from book where id = #{id}")
+	Book findById(Integer id);
 }
