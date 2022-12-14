@@ -1,0 +1,13 @@
+
+== Mybatis Annotation
+
+* *@Select*
+* *@Insert*
+* *@Update*
+* *@Delete*
+* *@Results*
+* *@SelectProvider*
+* *@UpdateProvider*
+* *@InsertProvider*
+* *@DeleteProvider*
+
