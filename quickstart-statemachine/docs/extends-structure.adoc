@@ -1,0 +1,14 @@
+
+
+
+
+== interface
+
+StateMachineConfigurer<S, E>
+
+
+== Class
+
+EnumStateMachineConfigurerAdapter<S extends Enum<S>,E extends Enum<E>> 枚举类状态机配置器适配器
+StateMachineConfigurerAdapter<S extends Object,E extends Object> 通用状态机配置器适配器
+AbstractStateMachineConfigurerAdapter<S, E> 抽象状态机配置器适配器
