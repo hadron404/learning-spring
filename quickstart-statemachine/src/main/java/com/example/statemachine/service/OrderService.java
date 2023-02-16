@@ -6,39 +6,44 @@ import lombok.AllArgsConstructor;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.statemachine.StateMachine;
+import org.springframework.statemachine.StateMachineEventResult;
+import org.springframework.statemachine.config.StateMachineFactory;
 import org.springframework.statemachine.persist.StateMachinePersister;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Service
 @AllArgsConstructor
 public class OrderService implements OrderUseCase {
-	private final StateMachine<OrderState, OrderEvent> stateMachine;
+	// private final StateMachine<OrderState, OrderEvent> stateMachine;
+
+	private final StateMachineFactory<OrderState, OrderEvent> factory;
 	private final StateMachinePersister<OrderState, OrderEvent, Order> orderMemoryPersister;
 	private final OrderPersistenceAdapter orderPersistenceAdapter;
 
 	@Override
-	public void transit(OrderCommand command) {
+	public Flux<StateMachineEventResult<OrderState, OrderEvent>> transit(OrderCommand command) {
 		if (command.id() == null) {
-			this.transitIfOrderIsNotExist(command);
+			return this.transitIfOrderIsNotExist(command);
 		} else {
-			this.transitIfOrderExisted(command);
+			return this.transitIfOrderExisted(command);
 		}
 	}
 
-	private void transitIfOrderIsNotExist(OrderCommand command) {
-		stateMachine.startReactively().subscribe();
-		Mono<Message<OrderEvent>> msg =
-			Mono.just(
-				MessageBuilder
-					.withPayload(OrderEvent.CREATE)
-					.setHeader("command", command)
-					.build()
+	private Flux<StateMachineEventResult<OrderState, OrderEvent>> transitIfOrderIsNotExist(OrderCommand command) {
+		StateMachine<OrderState, OrderEvent> stateMachine = factory.getStateMachine("orderStatemachine");
+		Mono<Message<OrderEvent>> msg = Mono.just(command)
+			.map((cmd) -> MessageBuilder
+				.withPayload(OrderEvent.CREATE)
+				.setHeader("command", cmd)
+				.build()
 			);
-		stateMachine.sendEvent(msg).subscribe();
+		return stateMachine.sendEvent(msg);
 	}
 
-	private void transitIfOrderExisted(OrderCommand command) {
+	private Flux<StateMachineEventResult<OrderState, OrderEvent>> transitIfOrderExisted(OrderCommand command) {
+		StateMachine<OrderState, OrderEvent> stateMachine = factory.getStateMachine("orderStatemachine");
 		Order order = orderPersistenceAdapter.loadOrder(command.id());
 		try {
 			orderMemoryPersister.restore(stateMachine, order);
@@ -52,6 +57,6 @@ public class OrderService implements OrderUseCase {
 				.setHeader("order", order)
 				.build()
 		);
-		stateMachine.sendEvent(msg).subscribe();
+		return stateMachine.sendEvent(msg);
 	}
 }

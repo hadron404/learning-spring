@@ -3,21 +3,18 @@ package com.example.statemachine.config;
 import com.example.statemachine.service.OrderEvent;
 import com.example.statemachine.service.OrderState;
 import lombok.AllArgsConstructor;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.statemachine.config.EnableStateMachine;
+import org.springframework.statemachine.config.EnableStateMachineFactory;
 import org.springframework.statemachine.config.EnumStateMachineConfigurerAdapter;
 import org.springframework.statemachine.config.builders.StateMachineConfigurationConfigurer;
 import org.springframework.statemachine.config.builders.StateMachineStateConfigurer;
 import org.springframework.statemachine.config.builders.StateMachineTransitionConfigurer;
-import org.springframework.statemachine.listener.StateMachineListener;
-import org.springframework.statemachine.listener.StateMachineListenerAdapter;
-import org.springframework.statemachine.state.State;
 
 import java.util.EnumSet;
 
 @Configuration
-@EnableStateMachine
+@EnableStateMachineFactory
 @AllArgsConstructor
 public class OrderStatemachine
 	extends EnumStateMachineConfigurerAdapter<OrderState, OrderEvent> {
@@ -30,8 +27,7 @@ public class OrderStatemachine
 		config
 			.withConfiguration()
 			.machineId(MACHINE_ID)
-			.autoStartup(false)
-			.listener(listener());
+			.autoStartup(true);
 	}
 
 	@Override
@@ -61,13 +57,4 @@ public class OrderStatemachine
 		;
 	}
 
-	@Bean
-	public StateMachineListener<OrderState, OrderEvent> listener() {
-		return new StateMachineListenerAdapter<>() {
-			@Override
-			public void stateChanged(State<OrderState, OrderEvent> from, State<OrderState, OrderEvent> to) {
-				System.out.println("State change to " + to.getId());
-			}
-		};
-	}
 }
