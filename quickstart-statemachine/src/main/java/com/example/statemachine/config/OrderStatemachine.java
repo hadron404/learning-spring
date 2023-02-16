@@ -2,6 +2,7 @@ package com.example.statemachine.config;
 
 import com.example.statemachine.service.OrderEvent;
 import com.example.statemachine.service.OrderState;
+import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.statemachine.config.EnableStateMachine;
@@ -17,10 +18,12 @@ import java.util.EnumSet;
 
 @Configuration
 @EnableStateMachine
+@AllArgsConstructor
 public class OrderStatemachine
 	extends EnumStateMachineConfigurerAdapter<OrderState, OrderEvent> {
 
 	protected static final String MACHINE_ID = "orderStatemachine";
+
 	@Override
 	public void configure(StateMachineConfigurationConfigurer<OrderState, OrderEvent> config)
 		throws Exception {
@@ -67,5 +70,4 @@ public class OrderStatemachine
 			}
 		};
 	}
-
 }

@@ -10,8 +10,7 @@ public class Operator {
 	private String name;
 
 	public Operator(Integer operatorId, String name) {
-		this.operatorId = new OperatorId(operatorId);
-		this.name = name;
+		this(new OperatorId(operatorId), name);
 	}
 
 	public record OperatorId(Integer value) {
