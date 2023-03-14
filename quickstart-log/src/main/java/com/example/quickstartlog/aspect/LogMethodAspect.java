@@ -30,12 +30,12 @@ public class LogMethodAspect {
 	}
 
 	@Before("execute()")
-	public void logControllerParameters(JoinPoint joinPoint) {
+	public void process(JoinPoint joinPoint) {
 		LogUtils.logInParameter(joinPoint);
 	}
 
 	@AfterReturning(value = "execute()", returning = "methodResult")
-	public void logOutParameters(JoinPoint joinPoint, Object methodResult) {
+	public void process(JoinPoint joinPoint, Object methodResult) {
 		LogUtils.logOutParameter(joinPoint, methodResult);
 	}
 }

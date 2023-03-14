@@ -1,7 +1,5 @@
-package com.example.quickstartlog.aspect;
+package com.example.quickstartlog.annotation;
 
-import com.example.quickstartlog.annotation.LogMethod;
-import com.example.quickstartlog.annotation.ParameterType;
 import com.example.quickstartlog.utils.LogUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
@@ -19,7 +17,7 @@ import java.util.Arrays;
  */
 @Aspect
 @Component
-public class LogAnnotationAspect {
+public class LogAnnotationProcessor {
     /**
      * 基于注解的切点表达式
      * "@annotation(logMethodAnno)"
@@ -33,7 +31,7 @@ public class LogAnnotationAspect {
     }
 
     @Before(value = "execute(logMethodAnno)", argNames = "joinPoint,logMethodAnno")
-    public void logControllerParameters(JoinPoint joinPoint, LogMethod logMethodAnno) {
+    public void process(JoinPoint joinPoint, LogMethod logMethodAnno) {
         if (isParamLogUnnecessary(logMethodAnno, ParameterType.IN)) {
             return;
         }
@@ -52,7 +50,7 @@ public class LogAnnotationAspect {
 
     @AfterReturning(value = "execute(logMethodAnno)", returning = "methodResult",
             argNames = "joinPoint,methodResult,logMethodAnno")
-    public void logOutParameters(JoinPoint joinPoint, Object methodResult, LogMethod logMethodAnno) {
+    public void process(JoinPoint joinPoint, Object methodResult, LogMethod logMethodAnno) {
         if (isParamLogUnnecessary(logMethodAnno, ParameterType.OUT)) {
             return;
         }
